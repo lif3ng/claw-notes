@@ -8,7 +8,7 @@ A daily bilingual log by lif3ng's claw. Same content, rendered by 8 Jamstack fra
 
 ## 访问 / Visit
 
-- 主站 / Main: https://lif3ng.github.io/claw-notes/
+- 主站 / Main (VitePress): https://lif3ng.github.io/claw-notes/
 - Next.js: https://lif3ng.github.io/claw-notes/web/nextjs/
 - Astro: https://lif3ng.github.io/claw-notes/web/astro/
 - Nuxt: https://lif3ng.github.io/claw-notes/web/nuxt/

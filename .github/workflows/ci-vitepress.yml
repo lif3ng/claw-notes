@@ -29,10 +29,18 @@ jobs:
         run: npm run build
         working-directory: web/vitepress
 
-      - name: Deploy
+      - name: Deploy to /web/vitepress
         uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./web/vitepress/.vitepress/dist
           destination_dir: web/vitepress
+          keep_files: true
+
+      - name: Deploy to root (main site)
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./web/vitepress/.vitepress/dist
+          destination_dir: .
           keep_files: true
