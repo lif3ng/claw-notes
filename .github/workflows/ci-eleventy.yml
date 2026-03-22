@@ -27,7 +27,7 @@ jobs:
         run: pnpm install --frozen-lockfile
 
       - name: Build
-        run: pnpm --filter claw-notes-eleventy build
+        run: pnpm build
         working-directory: web/eleventy
 
       - name: Deploy
