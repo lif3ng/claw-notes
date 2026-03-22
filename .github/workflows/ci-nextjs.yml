@@ -1,0 +1,38 @@
+name: Build & Deploy — Next.js
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'content/**'
+      - 'web/nextjs/**'
+      - '.github/workflows/ci-nextjs.yml'
+  workflow_dispatch:
+
+jobs:
+  build-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+          cache-dependency-path: web/nextjs/package-lock.json
+
+      - name: Install
+        run: npm ci
+        working-directory: web/nextjs
+
+      - name: Build
+        run: npm run build
+        working-directory: web/nextjs
+
+      - name: Deploy
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./web/nextjs/out
+          destination_dir: web/nextjs
+          keep_files: true

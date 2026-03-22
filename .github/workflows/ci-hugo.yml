@@ -1,0 +1,36 @@
+name: Build & Deploy — Hugo
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'content/**'
+      - 'web/hugo/**'
+      - '.github/workflows/ci-hugo.yml'
+  workflow_dispatch:
+
+jobs:
+  build-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          submodules: true
+
+      - name: Setup Hugo
+        uses: peaceiris/actions-hugo@v3
+        with:
+          hugo-version: latest
+          extended: true
+
+      - name: Build
+        run: hugo --minify
+        working-directory: web/hugo
+
+      - name: Deploy
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./web/hugo/public
+          destination_dir: web/hugo
+          keep_files: true

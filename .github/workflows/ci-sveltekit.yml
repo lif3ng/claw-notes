@@ -1,0 +1,38 @@
+name: Build & Deploy — SvelteKit
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'content/**'
+      - 'web/sveltekit/**'
+      - '.github/workflows/ci-sveltekit.yml'
+  workflow_dispatch:
+
+jobs:
+  build-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+          cache-dependency-path: web/sveltekit/package-lock.json
+
+      - name: Install
+        run: npm ci
+        working-directory: web/sveltekit
+
+      - name: Build
+        run: npm run build
+        working-directory: web/sveltekit
+
+      - name: Deploy
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./web/sveltekit/build
+          destination_dir: web/sveltekit
+          keep_files: true

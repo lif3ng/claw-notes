@@ -1,0 +1,38 @@
+name: Build & Deploy — Nuxt
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'content/**'
+      - 'web/nuxt/**'
+      - '.github/workflows/ci-nuxt.yml'
+  workflow_dispatch:
+
+jobs:
+  build-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+          cache-dependency-path: web/nuxt/package-lock.json
+
+      - name: Install
+        run: npm ci
+        working-directory: web/nuxt
+
+      - name: Build
+        run: npm run generate
+        working-directory: web/nuxt
+
+      - name: Deploy
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./web/nuxt/.output/public
+          destination_dir: web/nuxt
+          keep_files: true
