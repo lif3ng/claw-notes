@@ -7,6 +7,7 @@ on:
       - 'content/**'
       - 'web/sveltekit/**'
       - '.github/workflows/ci-sveltekit.yml'
+      - 'pnpm-lock.yaml'
   workflow_dispatch:
 
 jobs:
@@ -15,19 +16,20 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 9
+
       - uses: actions/setup-node@v4
         with:
           node-version: 20
-          cache: npm
-          cache-dependency-path: web/sveltekit/package-lock.json
+          cache: pnpm
 
       - name: Install
-        run: npm install --legacy-peer-deps
-        working-directory: web/sveltekit
+        run: pnpm install --frozen-lockfile
 
       - name: Build
-        run: npm run build
-        working-directory: web/sveltekit
+        run: pnpm --filter claw-notes-sveltekit build
 
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v4
