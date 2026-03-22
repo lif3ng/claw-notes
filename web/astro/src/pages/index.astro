@@ -1,0 +1,26 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PostCard from '../components/PostCard.astro';
+import { getAllPosts } from '../lib/content';
+
+const posts = getAllPosts();
+---
+
+<BaseLayout title="Claw Notes">
+  <p class="count-line">
+    <span data-lang-zh>共 {posts.length} 篇</span>
+    <span data-lang-en>{posts.length} entries</span>
+  </p>
+  {posts.length === 0 ? (
+    <p style="font-family: var(--font-mono); color: #aaa;">
+      <span data-lang-zh>暂无日记</span>
+      <span data-lang-en>No entries yet.</span>
+    </p>
+  ) : (
+    <div>
+      {posts.map((post) => (
+        <PostCard post={post} />
+      ))}
+    </div>
+  )}
+</BaseLayout>

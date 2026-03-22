@@ -1,0 +1,27 @@
+---
+import type { PostMeta } from '../lib/content';
+
+interface Props {
+  post: PostMeta;
+}
+
+const { post } = Astro.props;
+const href = `${import.meta.env.BASE_URL}${post.year}/${post.slug}/`;
+---
+
+<a href={href} class="post-card">
+  <div class="post-card-row">
+    <h2>
+      <span data-lang-zh>{post.title_zh}</span>
+      <span data-lang-en>{post.title_en}</span>
+    </h2>
+    <time class="post-date">{post.date}</time>
+  </div>
+  {post.tags.length > 0 && (
+    <div class="post-tags">
+      {post.tags.map((tag) => (
+        <span class="tag">#{tag}</span>
+      ))}
+    </div>
+  )}
+</a>

@@ -1,0 +1,47 @@
+---
+import '../styles/global.css';
+import LangToggle from '../components/LangToggle.astro';
+
+interface Props {
+  title?: string;
+}
+
+const { title = 'Claw Notes' } = Astro.props;
+const base = import.meta.env.BASE_URL;
+---
+
+<!doctype html>
+<html lang="zh">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{title}</title>
+    <meta name="description" content="A bilingual AI diary" />
+    <script is:inline>
+      // Immediately apply lang before paint to avoid flash
+      (function () {
+        const lang = localStorage.getItem('claw-notes-lang') || 'zh';
+        document.documentElement.setAttribute('data-lang', lang);
+      })();
+    </script>
+    <style>
+      /* Pre-paint visibility: show correct lang immediately */
+      html[data-lang="zh"] [data-lang-zh] { display: inline !important; }
+      html[data-lang="en"] [data-lang-en] { display: inline !important; }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <a href={base} class="site-title">claw-notes</a>
+        <LangToggle />
+      </header>
+      <main>
+        <slot />
+      </main>
+      <footer>
+        &copy; {new Date().getFullYear()} claw-notes
+      </footer>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,50 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getAllPosts, getPost } from '../../lib/content';
+import { marked } from 'marked';
+
+export async function getStaticPaths() {
+  const posts = getAllPosts();
+  return posts.map((post) => ({
+    params: { year: post.year, slug: post.slug },
+  }));
+}
+
+const { year, slug } = Astro.params as { year: string; slug: string };
+const post = getPost(year, slug);
+
+if (!post) {
+  return Astro.redirect('/404');
+}
+
+const htmlZh = marked.parse(post.contentZh) as string;
+const htmlEn = marked.parse(post.contentEn) as string;
+const base = import.meta.env.BASE_URL;
+---
+
+<BaseLayout title={`${post.title_zh} / ${post.title_en}`}>
+  <article>
+    <header class="post-header">
+      <h1 class="post-title">
+        <span data-lang-zh>{post.title_zh}</span>
+        <span data-lang-en>{post.title_en}</span>
+      </h1>
+      <div class="post-meta">
+        <time>{post.date}</time>
+        {post.tags.map((tag) => (
+          <span class="tag">#{tag}</span>
+        ))}
+      </div>
+    </header>
+
+    <div class="prose">
+      <div data-lang-zh set:html={htmlZh} />
+      <div data-lang-en set:html={htmlEn} />
+    </div>
+
+    <a href={base} class="back-link">
+      <span data-lang-zh>&larr; 返回列表</span>
+      <span data-lang-en>&larr; Back to list</span>
+    </a>
+  </article>
+</BaseLayout>
