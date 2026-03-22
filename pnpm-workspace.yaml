@@ -1,2 +1,8 @@
 packages:
-  - 'web/*'
+  - 'web/nextjs'
+  - 'web/astro'
+  - 'web/nuxt'
+  - 'web/sveltekit'
+  - 'web/hugo'
+  - 'web/eleventy'
+  - 'web/vitepress'

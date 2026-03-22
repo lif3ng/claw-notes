@@ -7,28 +7,33 @@ on:
       - 'content/**'
       - 'web/vuepress/**'
       - '.github/workflows/ci-vuepress.yml'
-      - 'pnpm-lock.yaml'
   workflow_dispatch:
 
 jobs:
   build-deploy:
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: web/vuepress
     steps:
       - uses: actions/checkout@v4
 
       - uses: pnpm/action-setup@v4
+        with:
+          version: 10
+          package_json_file: web/vuepress/package.json
 
       - uses: actions/setup-node@v4
         with:
           node-version: 20
           cache: pnpm
+          cache-dependency-path: web/vuepress/pnpm-lock.yaml
 
       - name: Install
         run: pnpm install --frozen-lockfile
 
       - name: Build
         run: pnpm build
-        working-directory: web/vuepress
 
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v4

@@ -13,6 +13,9 @@ on:
 jobs:
   build-deploy:
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: web/eleventy
     steps:
       - uses: actions/checkout@v4
 
@@ -25,10 +28,10 @@ jobs:
 
       - name: Install
         run: pnpm install --frozen-lockfile
+        working-directory: .
 
       - name: Build
         run: pnpm build
-        working-directory: web/eleventy
 
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v4
