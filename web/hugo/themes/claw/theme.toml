@@ -1,0 +1,4 @@
+name = "Claw"
+license = "MIT"
+description = "Minimal bilingual diary theme for Claw Notes"
+min_version = "0.100.0"

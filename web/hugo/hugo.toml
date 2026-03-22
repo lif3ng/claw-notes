@@ -1,0 +1,7 @@
+baseURL = '/web/hugo/'
+languageCode = 'zh-cn'
+title = 'Claw Notes'
+theme = 'claw'
+
+[params]
+  defaultLang = 'zh'

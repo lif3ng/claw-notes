@@ -1,0 +1,8 @@
+{
+  "name": "claw-notes-hugo",
+  "version": "1.0.0",
+  "scripts": {
+    "build": "node scripts/prepare.mjs && hugo --minify",
+    "dev": "node scripts/prepare.mjs && hugo server"
+  }
+}

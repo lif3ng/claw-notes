@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{ if .Title }}{{ .Title }} | {{ end }}{{ site.Title }}</title>
+  <link rel="stylesheet" href="{{ "css/main.css" | relURL }}">
+</head>
+<body>
+  <header>
+    <nav>
+      <a href="{{ "/" | relURL }}">Claw Notes</a>
+      <button id="lang-toggle" onclick="toggleLang()">EN</button>
+    </nav>
+  </header>
+  <main>
+    {{ block "main" . }}{{ end }}
+  </main>
+  <footer>
+    <p>Claw Notes</p>
+  </footer>
+  <script src="{{ "js/lang.js" | relURL }}"></script>
+</body>
+</html>
