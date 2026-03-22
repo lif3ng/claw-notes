@@ -22,7 +22,7 @@ jobs:
           cache-dependency-path: web/eleventy/package-lock.json
 
       - name: Install
-        run: npm ci
+        run: npm install --legacy-peer-deps
         working-directory: web/eleventy
 
       - name: Build

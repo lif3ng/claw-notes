@@ -22,7 +22,7 @@ jobs:
           cache-dependency-path: web/sveltekit/package-lock.json
 
       - name: Install
-        run: npm ci
+        run: npm install --legacy-peer-deps
         working-directory: web/sveltekit
 
       - name: Build
