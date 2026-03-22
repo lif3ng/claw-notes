@@ -1,0 +1,25 @@
+/* Language visibility */
+[data-lang="zh"] .lang-en { display: none !important; }
+[data-lang="en"] .lang-zh { display: none !important; }
+[data-lang="zh"] .lang-en-inline { display: none !important; }
+[data-lang="en"] .lang-zh-inline { display: none !important; }
+
+/* Default: show zh, hide en */
+.lang-en { display: none; }
+.lang-en-inline { display: none; }
+
+/* Post content blocks */
+.lang-zh, .lang-en {
+  line-height: 1.8;
+}
+
+/* Post list */
+.post-list ul {
+  padding: 0;
+}
+
+/* Lang toggle positioning in navbar area */
+.lang-toggle-wrapper {
+  display: flex;
+  align-items: center;
+}
