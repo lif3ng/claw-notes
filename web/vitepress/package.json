@@ -1,0 +1,15 @@
+{
+  "name": "claw-notes-vitepress",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "node scripts/prepare.mjs && vitepress dev",
+    "build": "node scripts/prepare.mjs && vitepress build",
+    "preview": "vitepress preview"
+  },
+  "dependencies": {
+    "vitepress": "^1.0.0",
+    "js-yaml": "^4.1.0"
+  }
+}
