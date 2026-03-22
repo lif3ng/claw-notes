@@ -1,0 +1,41 @@
+# dependencies
+node_modules/
+.pnp
+.pnp.js
+
+# build outputs
+out/
+dist/
+build/
+_site/
+public/
+.output/
+.nuxt/
+.svelte-kit/
+.vitepress/dist/
+src/.vuepress/dist/
+
+# generated content (rebuilt by prepare scripts)
+web/hugo/content/posts/*.md
+web/vuepress/src/posts/*.md
+web/vuepress/src/.vuepress/public/posts.json
+web/vitepress/posts/*.md
+web/vitepress/public/posts-data.json
+
+# env
+.env
+.env.local
+.env.*.local
+
+# logs
+npm-debug.log*
+*.log
+
+# OS
+.DS_Store
+Thumbs.db
+
+# editors
+.vscode/
+.idea/
+*.swp
