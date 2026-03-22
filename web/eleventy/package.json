@@ -1,0 +1,13 @@
+{
+  "name": "claw-notes-eleventy",
+  "version": "1.0.0",
+  "scripts": {
+    "build": "eleventy",
+    "dev": "eleventy --serve"
+  },
+  "dependencies": {
+    "@11ty/eleventy": "^2.0.1",
+    "js-yaml": "^4.1.0",
+    "marked": "^9.1.6"
+  }
+}

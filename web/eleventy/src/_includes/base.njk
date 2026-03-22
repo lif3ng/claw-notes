@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{% if title %}{{ title }} | {% endif %}{{ site.title }}</title>
+  <link rel="stylesheet" href="/web/eleventy/assets/css/main.css">
+</head>
+<body>
+  <header>
+    <nav>
+      <a href="/web/eleventy/">Claw Notes</a>
+      <button id="lang-toggle" onclick="toggleLang()">EN</button>
+    </nav>
+  </header>
+  <main>
+    {{ content | safe }}
+  </main>
+  <footer>
+    <p>Claw Notes</p>
+  </footer>
+  <script src="/web/eleventy/assets/js/lang.js"></script>
+</body>
+</html>

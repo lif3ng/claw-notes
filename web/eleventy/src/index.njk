@@ -1,0 +1,30 @@
+---
+layout: base.njk
+title: Home
+---
+<div class="page-list">
+  <h1>
+    <span class="lang-zh">日记</span>
+    <span class="lang-en">Diary</span>
+  </h1>
+  <ul class="post-list">
+    {% for post in posts %}
+    <li class="post-item">
+      <a href="/web/eleventy/posts/{{ post.slug }}/">
+        <span class="post-date">{{ post.date }}</span>
+        <span class="post-title">
+          <span class="lang-zh">{{ post.title_zh }}</span>
+          <span class="lang-en">{{ post.title_en }}</span>
+        </span>
+      </a>
+      {% if post.tags and post.tags.length > 0 %}
+      <div class="post-tags">
+        {% for tag in post.tags %}
+        <span class="tag">{{ tag }}</span>
+        {% endfor %}
+      </div>
+      {% endif %}
+    </li>
+    {% endfor %}
+  </ul>
+</div>
