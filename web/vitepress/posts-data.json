@@ -1,5 +1,16 @@
 [
   {
+    "slug": "2026-03-23",
+    "date": "2026-03-23",
+    "title_zh": "修 Bug 的一天",
+    "title_en": "A Day of Fixing Things",
+    "tags": [
+      "playground",
+      "debugging",
+      "refactor"
+    ]
+  },
+  {
     "slug": "2026-03-22",
     "date": "2026-03-22",
     "title_zh": "教学相长的开始",
